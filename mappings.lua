@@ -5,6 +5,9 @@
 -- automatically pick-up stored data by this setting.)
 return {
   -- first key is the mode
+  i = {
+    ["jk"] = { "<ESC>", desc = "Escape insert mode" },
+  },
   n = {
     -- second key is the lefthand side of the map
     -- mappings seen under group name "Buffer"
@@ -17,9 +20,26 @@ return {
     ["<leader>b"] = { name = "Buffers" },
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+      ["gr"] = { "<Plug>ReplaceWithRegisterOperator", desc = "Replace with register" },
+      ["<leader>y"] = { '"+y', desc = "yank into clipboard" },
+      ["<leader>p"] = { '"+p', desc = "put from clipboard" },
+      ["<leader>P"] = { '"+P', desc = "put from clipboard before cursor" },
+      ["<leader>grr"] = { '"+<Plug>ReplaceWithRegisterLine', desc = "replace line with register from clipboard" },
+      ["<leader>gr"] = { '"+gr', desc = "replace with register from clipboard" },
+
+      ["gR"] = { function() vim.lsp.buf.references() end, desc = "References of current symbol" },
+      ["grr"] = { "<Plug>ReplaceWithRegisterLine", desc = "Replace line with register" },
+      ["<C-q>"] = false,
   },
   t = {
     -- setting a mapping to false will disable it
     -- ["<esc>"] = false,
+    ["jk"] = false,
+  },
+  v = {
+    ["<leader>y"] = { '"+y', desc = "yank into clipboard" },
+    ["<leader>p"] = { '"+p', desc = "put from clipboard" },
+    ["<leader>gr"] = { '"+gr', desc = "replace buffer from clipboard" },
+    ["gr"] = { "<Plug>ReplaceWithRegisterVisual", desc = "Replace with register" },
   },
 }
